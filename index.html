@@ -5,8 +5,7 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Milk AR</title>
 
@@ -15,21 +14,20 @@ content="width=device-width, initial-scale=1.0">
 <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
 
 <style>
-
 body{
 margin:0;
 overflow:hidden;
 }
-
 </style>
 
 </head>
+
 
 <body>
 
 <a-scene
 
-mindar-image="imageTargetSrc: targets.mind;"
+mindar-image="imageTargetSrc: targets.mind; autoStart: true"
 
 embedded
 
@@ -40,54 +38,72 @@ vr-mode-ui="enabled:false"
 device-orientation-permission-ui="enabled:false"
 
 >
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const target = document.querySelector("[mindar-image-target]");
 
-  target.addEventListener("targetFound", () => {
-    alert("Target Found");
-  });
-
-  target.addEventListener("targetLost", () => {
-    console.log("Target Lost");
-  });
-});
-</script>
 
 <a-assets>
 
-<img
-id="hand"
-src="hand.png">
+<img id="hand" src="hand.png">
 
 </a-assets>
+
 
 <a-camera
 position="0 0 0"
 look-controls="enabled:false">
 </a-camera>
 
-<a-entity mindar-image-target="targetIndex:0">
+
+<a-entity 
+mindar-image-target="targetIndex:0"
+id="target">
+
 
 <a-image
 
 src="#hand"
 
-position="0 0 0.01"
+position="0 0 0"
 
-width="1"
+width="0.8"
 
-height="1.4"
+height="1.1"
 
-transparent="true"
-
->
+material="transparent:true; opacity:1">
 
 </a-image>
 
+
 </a-entity>
 
+
 </a-scene>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+const target=document.querySelector("#target");
+
+
+target.addEventListener("targetFound",()=>{
+
+console.log("Target Found");
+
+});
+
+
+target.addEventListener("targetLost",()=>{
+
+console.log("Target Lost");
+
+});
+
+
+});
+
+</script>
+
 
 </body>
 
