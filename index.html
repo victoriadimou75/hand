@@ -40,6 +40,19 @@ vr-mode-ui="enabled:false"
 device-orientation-permission-ui="enabled:false"
 
 >
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const target = document.querySelector("[mindar-image-target]");
+
+  target.addEventListener("targetFound", () => {
+    alert("Target Found");
+  });
+
+  target.addEventListener("targetLost", () => {
+    console.log("Target Lost");
+  });
+});
+</script>
 
 <a-assets>
 
